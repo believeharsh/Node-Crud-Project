@@ -53,17 +53,38 @@ Before you begin, ensure you have the following installed on your system:
    If you are using MongoDB Atlas, update the connection URL in the connection.js file with your MongoDB Atlas connection string.
 
 5. Start the server:
-    ```bash
-    npm start
+   ```bash
+   npm start
+   ```
 
 ## API Endpoints
 
-1. Get all users
+### 1. Get All Users
 
-Endpoint: GET /api/users
-Description: Fetch all users from the database.
-Response:
-[
+- **Endpoint**: `GET /api/users`
+- **Description**: Fetch all users from the database.
+- **Response**:
+  ```json
+  [
+    {
+      "_id": "user_id",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "gender": "male",
+      "jobTitle": "Developer",
+      "createdAt": "2022-01-01T00:00:00.000Z",
+      "updatedAt": "2022-01-01T00:00:00.000Z"
+    }
+  ]
+  ```
+
+### 2. Get User by ID
+
+- **Endpoint**: `GET /api/users/:id`
+- **Description**: Fetch a user by their unique ID.
+- **Response**:
+  ```json
   {
     "_id": "user_id",
     "firstName": "John",
@@ -74,86 +95,89 @@ Response:
     "createdAt": "2022-01-01T00:00:00.000Z",
     "updatedAt": "2022-01-01T00:00:00.000Z"
   }
-]
+  ```
 
-2. Get user by ID
+### 3. Create a New User
 
-Endpoint: GET /api/users/:id
-Description: Fetch a user by their unique ID.
-Response:
-{
-  "_id": "user_id",
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "gender": "male",
-  "jobTitle": "Developer",
-  "createdAt": "2022-01-01T00:00:00.000Z",
-  "updatedAt": "2022-01-01T00:00:00.000Z"
-}
+- **Endpoint**: `POST /api/users`
+- **Description**: Create a new user with the provided data.
+- **Request Body**:
+  ```json
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "gender": "male",
+    "jobTitle": "Developer"
+  }
+  ```
+- **Response** :
+  ```json
+  {
+    "msg": "Successfully created user"
+  }
+  ```
 
-3. Create a new user
+### 4. Update User by ID
 
-Endpoint: POST /api/users
-Description: Create a new user with the provided data.
-Request Body:
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "gender": "male",
-  "jobTitle": "Developer"
-}
-Response:
-{
-  "msg": "Successfully created user"
-}
+- **Endpoint**: `PATCH /api/users/:id`
+- **Description**: Update a user's data by their unique ID.
+- **Request Body**:
+  ```json
+  {
+    "firstName": "Updated Name"
+  }
+  ```
+- **Response** :
+  ```json
+  {
+    "_id": "user_id",
+    "firstName": "Updated Name",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "gender": "male",
+    "jobTitle": "Developer",
+    "createdAt": "2022-01-01T00:00:00.000Z",
+    "updatedAt": "2022-01-01T00:00:00.000Z"
+  }
+  ```
 
+### 5. Delete User by ID
 
-4. Update user by ID
-Endpoint: PATCH /api/users/:id
-Description: Update a user's data by their unique ID.
-Request Body:
-{
-  "firstName": "Updated Name"
-}
-
-Response:
-{
-  "_id": "user_id",
-  "firstName": "Updated Name",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "gender": "male",
-  "jobTitle": "Developer",
-  "createdAt": "2022-01-01T00:00:00.000Z",
-  "updatedAt": "2022-01-01T00:00:00.000Z"
-}
-
-5. Delete user by ID
-Endpoint: DELETE /api/users/:id
-Description: Delete a user by their unique ID.
-Response:
-{
-  "_id": "user_id",
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "gender": "male",
-  "jobTitle": "Developer",
-  "createdAt": "2022-01-01T00:00:00.000Z",
-  "updatedAt": "2022-01-01T00:00:00.000Z"
-}
+- **Endpoint**: `DELETE /api/users/:id`
+- **Description**: Delete a user by their unique ID.
+- **Response**:
+  ```json
+  {
+    "_id": "user_id",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "gender": "male",
+    "jobTitle": "Developer",
+    "createdAt": "2022-01-01T00:00:00.000Z",
+    "updatedAt": "2022-01-01T00:00:00.000Z"
+  }
+  ```
 
 ## Testing the API
-You can test the API using tools like:
 
-Postman: Postman Download
+You can test the API using the following tools:
 
-cURL: Test using command line (for example):
+### 1. Postman
 
-curl -X GET http://localhost:8000/api/users
-Contributing
+- [Download Postman](https://www.postman.com/downloads/)
+
+### 2. cURL
+
+Test using the command line with the following example:
+
+    ```bash
+    curl -X GET http://localhost:8000/api/users
+    ```
+
+### 3. Contributing
+
 Fork the repository.
 Create your feature branch (git checkout -b feature-branch).
 Commit your changes (git commit -m 'Add new feature').
@@ -161,7 +185,6 @@ Push to the branch (git push origin feature-branch).
 Open a pull request.
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
 
 ### How to Use:
 
